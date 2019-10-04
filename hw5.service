@@ -1,0 +1,16 @@
+[Unit]
+Description=Memory Game - Server Side
+
+[Service]
+Type=simple
+User=elixirpractice
+Group=elixirpractice
+Restart=on-failure
+Environment=MIX_ENV=prod "PORT=5791"
+Environment=LANG=en_US.UTF-8
+
+WorkingDirectory=/home/elixirpractice/CS5610-HW05/
+ExecStart=bash /home/elixirpractice/CS5610-HW05/start.sh
+
+[Install]
+WantedBy=multi-user.target
