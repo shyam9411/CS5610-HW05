@@ -1,19 +1,14 @@
 # Memory
 
-To start your Phoenix server:
+The file in this repo have been forked from: https://github.com/NatTuck/scratch-2019-09/tree/master/5610/08/hangman and the intent of this is to successfully create a react app for the memory game with the computation logic for a state residing in Elixir. The game associates each tile with a letter from A - Z and upon matching corresponding tiles, it accepts them. Incorrect matching is reverted back. The total score is computed based on the clicks made to find all such pairs.
 
-  * Install dependencies with `mix deps.get`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+Deployment steps were followed from: http://ccs.neu.edu/home/ntuck/courses/2019/09/cs5610/notes/04-phoenix-frontend/notes.html and also made the following changes
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Edit the included hw5.service file to make sure it's correct.
+Copy it to /etc/systemd/system
+Enable it with "sudo systemctl enable hw5"
+Start the service with "sudo service hw5 start".
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+Once the following is done, the app would start to run automatically upon launching intended domain.
 
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+The domain for this assignement is: http://memory2.neu-webapps.space/
