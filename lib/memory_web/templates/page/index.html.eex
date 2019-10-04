@@ -1,0 +1,6 @@
+<h1>Join A Game</h1>
+
+<%= form_for @conn, "/games/", fn f -> %>
+    <p>Enter the name of the game: <%= text_input f, :name %></p>
+    <p><%= submit "Join Game!" %></p>
+<% end %>
