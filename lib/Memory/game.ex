@@ -38,38 +38,43 @@ defmodule Memory.Game do
   end
 
   def guess(game, tileNo) do
-    game = if Map.get(game, :clickOne) == :nil do
-      game = Map.put(game, :clickOne, tileNo)
-    else 
-      if Map.get(game, :clickTwo) == :nil do
-        game = Map.put(game, :clickTwo, tileNo)
-      else
-        raise "Unsupported action"
-      end
-    end
-    
-    newStatus = List.replace_at(game.status, tileNo, true)
-    game = Map.put(game, :status, newStatus)
-    game = Map.update(game, :score, 0, &(&1 + 1))
-
-    bMatchFound = matchFound(game)
-    game = if bMatchFound == true do
-      greenStatus = List.replace_at(game.colors, game.clickOne, "completed")
-      greenStatus2 = List.replace_at(greenStatus, tileNo, "completed")
-      game = Map.put(game, :colors, greenStatus2)
-      game = Map.put(game, :clickOne, :nil)
-      game = Map.put(game, :clickTwo, :nil)
+    if game.clickOne == tileNo || game.clickTwo == tileNo do
+	game
     else
-      if Map.get(game, :clickTwo) == :nil do
-        grayStatus = List.replace_at(game.colors, tileNo, "lightgray")
-        game = Map.put(game, :colors, grayStatus)
-      else
-        redStatus = List.replace_at(game.colors, game.clickOne, "red")
-        redStatus2 = List.replace_at(redStatus, game.clickTwo, "red")
-        game = Map.put(game, :colors, redStatus2)
-        game = Map.put(game, :clickOne, :nil)
-        game = Map.put(game, :clickTwo, :nil)
-      end
+
+    	game = if Map.get(game, :clickOne) == :nil do
+      		game = Map.put(game, :clickOne, tileNo)
+    	else 
+      		if Map.get(game, :clickTwo) == :nil do
+        		game = Map.put(game, :clickTwo, tileNo)
+      		else
+        		raise "Unsupported action"
+      		end
+    	end
+    
+    	newStatus = List.replace_at(game.status, tileNo, true)
+    	game = Map.put(game, :status, newStatus)
+    	game = Map.update(game, :score, 0, &(&1 + 1))
+
+    	bMatchFound = matchFound(game)
+    	game = if bMatchFound == true do
+      	greenStatus = List.replace_at(game.colors, game.clickOne, "completed")
+      	greenStatus2 = List.replace_at(greenStatus, tileNo, "completed")
+      	game = Map.put(game, :colors, greenStatus2)
+      	game = Map.put(game, :clickOne, :nil)
+      	game = Map.put(game, :clickTwo, :nil)
+    	else
+      		if Map.get(game, :clickTwo) == :nil do
+        		grayStatus = List.replace_at(game.colors, tileNo, "lightgray")
+        		game = Map.put(game, :colors, grayStatus)
+      		else
+        		redStatus = List.replace_at(game.colors, game.clickOne, "red")
+        		redStatus2 = List.replace_at(redStatus, game.clickTwo, "red")
+        		game = Map.put(game, :colors, redStatus2)
+        		game = Map.put(game, :clickOne, :nil)
+        		game = Map.put(game, :clickTwo, :nil)
+      		end
+    	end
     end
   end
 

@@ -1,5 +1,4 @@
 <h1>Memory</h1>
-<p>game</p>
 <div id="root">
   React component loading...
 </div>
